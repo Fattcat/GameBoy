@@ -344,10 +344,10 @@ void startPongGame() {
       display.setCursor(0, 0);
       display.setTextSize(1);
       display.setTextColor(SSD1306_WHITE);
-      display.print(F("Hrac: "));
+      display.print(F("CPU: "));
       display.println(player_score);
       display.setCursor(90, 0);
-      display.print(F("CPU: "));
+      display.print(F("Hrac: "));
       display.println(mcu_score);
       display.display();
     }
