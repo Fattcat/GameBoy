@@ -341,12 +341,12 @@ void startPongGame() {
       display.fillRect(MCU_X, mcu_y, 5, PADDLE_HEIGHT, SSD1306_WHITE);
       display.fillRect(PLAYER_X, player_y, 5, PADDLE_HEIGHT, SSD1306_WHITE);
       display.fillRect(ball_x, ball_y, 3, 3, SSD1306_WHITE);
-      display.setCursor(0, 0);
+      display.setCursor(10, 0);
       display.setTextSize(1);
       display.setTextColor(SSD1306_WHITE);
       display.print(F("CPU: "));
       display.println(player_score);
-      display.setCursor(90, 0);
+      display.setCursor(80, 0);
       display.print(F("Hrac: "));
       display.println(mcu_score);
       display.display();
