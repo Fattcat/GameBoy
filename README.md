@@ -5,10 +5,9 @@
 ## Available Games
 - Dino Game
 - Flappy Bird
-
+- Pong Game
   - Will be added
-    - Tic tac toe
-    - Pong
+    - Tic tac
 
 ## Needed Components
 - Arduino IDE App
