@@ -7,8 +7,8 @@
 - Flappy Bird
 
   - Will be added
-  - Tic tac toe
-  - Pong
+    - Tic tac toe
+    - Pong
 
 ## Needed Components
 - Arduino IDE App
