@@ -1,1 +1,1 @@
-<h1 style="text-align: center">GameBoy</h1>
+<p style="text-align: center">GameBoy</p>
