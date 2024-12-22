@@ -1,1 +1,4 @@
-<p style="text-align: center;">Tento text bude v strede.</p>
+<center>
+    <h1>GameBoy</h1>
+    <p>Simple code for create Old School GameBoy</p>
+</center>
