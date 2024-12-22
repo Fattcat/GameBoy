@@ -257,7 +257,6 @@ void startFlappyBird() {
 }
 
 
-
 // ----- Pong -----
 void startPongGame() {
   // Inicializácia premennej pre hru
@@ -271,6 +270,8 @@ void startPongGame() {
   ball_dir_y = 1;
   player_y = SCREEN_HEIGHT / 2 - PADDLE_HEIGHT / 2;
   mcu_y = SCREEN_HEIGHT / 2 - PADDLE_HEIGHT / 2;
+
+  unsigned long buttonPressStart = 0; // Na sledovanie času stlačenia tlačidla
 
   while (!game_over) {
     unsigned long time = millis();
@@ -321,6 +322,19 @@ void startPongGame() {
       ball_dir_x = -ball_dir_x; // Lopta sa odrazí od pálky MCU
     }
 
+    // Kontrola tlačidla ENTER
+    if (digitalRead(BUTTON_ENTER) == LOW) {
+      if (buttonPressStart == 0) { // Začiatok sledovania stlačenia
+        buttonPressStart = millis();
+      } else if (millis() - buttonPressStart >= 1000) { // Tlačidlo držané viac ako 1 sekundu
+        game_over = true; // Vypneme hru
+        delay(1000);
+        return; // Vrátime sa do hlavného menu
+      }
+    } else {
+      buttonPressStart = 0; // Resetujeme časovač, ak tlačidlo nie je stlačené
+    }
+
     // Zobrazenie
     if (update_needed) {
       display.clearDisplay();
@@ -330,10 +344,10 @@ void startPongGame() {
       display.setCursor(0, 0);
       display.setTextSize(1);
       display.setTextColor(SSD1306_WHITE);
-      display.print(F("Player: "));
+      display.print(F("Hrac: "));
       display.println(player_score);
       display.setCursor(90, 0);
-      display.print(F("MCU: "));
+      display.print(F("CPU: "));
       display.println(mcu_score);
       display.display();
     }
