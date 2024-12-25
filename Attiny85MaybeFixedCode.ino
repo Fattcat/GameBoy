@@ -69,9 +69,9 @@ void setup() {
   TinyWireM.begin();
   
   // Inicializácia OLED displeja
-  OLED.begin();
-  OLED.clear();
-  OLED.display();
+  oled.begin();
+  oled.clear();
+  oled.on();
 }
 
 void loop() {
@@ -79,18 +79,18 @@ void loop() {
 }
 
 void showMenu() {
-  OLED.clear();
-  OLED.setCursor(0, 0);
-  OLED.print(F("Select a game:"));
+  oled.clear();
+  oled.setCursor(0, 0);
+  oled.print(F("Select a game:"));
 
-  OLED.setCursor(10, 20);
-  OLED.print(cursorPosition == 0 ? "> DinoGame" : "  DinoGame");
-  OLED.setCursor(10, 30);
-  OLED.print(cursorPosition == 1 ? "> FlappyBird" : "  FlappyBird");
-  OLED.setCursor(10, 40);
-  OLED.print(cursorPosition == 2 ? "> PongGame" : "  PongGame");
+  oled.setCursor(10, 20);
+  oled.print(cursorPosition == 0 ? "> DinoGame" : "  DinoGame");
+  oled.setCursor(10, 30);
+  oled.print(cursorPosition == 1 ? "> FlappyBird" : "  FlappyBird");
+  oled.setCursor(10, 40);
+  oled.print(cursorPosition == 2 ? "> PongGame" : "  PongGame");
 
-  OLED.display();
+  oled.on();
 
   // Ovládanie kurzora
   if (digitalRead(BUTTON_UP) == LOW) {
@@ -112,15 +112,14 @@ void showMenu() {
 }
 
 void showGameOverScreen(int score) {
-  OLED.clear();
-  OLED.setTextSize(2);
-  OLED.setCursor(0, 0);
-  OLED.print("Game Over");
-  OLED.setTextSize(1);
-  OLED.setCursor(0, 20);
-  OLED.print("Score: ");
-  OLED.print(score);
-  OLED.display();
+  oled.clear();
+  oled.setFont(FONT8X16);
+  oled.setCursor(0, 0);
+  oled.print("Game Over");
+  oled.setCursor(0, 20);
+  oled.print("Score: ");
+  oled.print(score);
+  oled.on();
   delay(2000);
 }
 
@@ -133,7 +132,7 @@ void startDinoGame() {
   dinoObstacle.x = SCREEN_WIDTH;
 
   while (dinoGameActive) {
-    OLED.clear();
+    oled.clear();
 
     // Tlačidlo pre skok
     if (digitalRead(BUTTON_ENTER) == LOW && dinoY == SCREEN_HEIGHT - 10) {
@@ -165,15 +164,15 @@ void startDinoGame() {
     }
 
     // Kreslenie hry
-    OLED.fillRect(5, dinoY, 10, 10, 1); // Dino
-    OLED.fillRect(dinoObstacle.x, SCREEN_HEIGHT - 10, 10, 10, 1); // Prekážka
+    oled.fillRect(5, dinoY, 10, 10, 1); // Dino
+    oled.fillRect(dinoObstacle.x, SCREEN_HEIGHT - 10, 10, 10, 1); // Prekážka
 
     // Skóre
-    OLED.setCursor(0, 0);
-    OLED.print(F("Score: "));
-    OLED.print(dinoScore);
+    oled.setCursor(0, 0);
+    oled.print(F("Score: "));
+    oled.print(dinoScore);
 
-    OLED.display();
+    oled.on();
     delay(30);
   }
 }
@@ -189,7 +188,7 @@ void startFlappyBird() {
   flappyObstacle.x = SCREEN_WIDTH;
 
   while (flappyBirdActive) {
-    OLED.clear();
+    oled.clear();
 
     // Skok
     if (digitalRead(BUTTON_ENTER) == LOW) {
@@ -226,18 +225,18 @@ void startFlappyBird() {
     }
 
     // Kreslenie prekážok
-    OLED.fillRect(flappyObstacle.x, 0, 8, flappyObstacle.gapY, 1);
-    OLED.fillRect(flappyObstacle.x, flappyObstacle.gapY + flappyObstacle.gapHeight, 8, SCREEN_HEIGHT - flappyObstacle.gapY - flappyObstacle.gapHeight, 1);
+    oled.fillRect(flappyObstacle.x, 0, 8, flappyObstacle.gapY, 1);
+    oled.fillRect(flappyObstacle.x, flappyObstacle.gapY + flappyObstacle.gapHeight, 8, SCREEN_HEIGHT - flappyObstacle.gapY - flappyObstacle.gapHeight, 1);
 
     // Kreslenie vtáka
-    OLED.fillRect(8, birdY, 6, 6, 1);
+    oled.fillRect(8, birdY, 6, 6, 1);
 
     // Zobrazenie skóre
-    OLED.setCursor(0, 0);
-    OLED.print(F("Score: "));
-    OLED.print(birdScore);
+    oled.setCursor(0, 0);
+    oled.print(F("Score: "));
+    oled.print(birdScore);
 
-    OLED.display();
+    oled.on();
     delay(30);
   }
 }
