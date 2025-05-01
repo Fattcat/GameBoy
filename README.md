@@ -10,6 +10,7 @@
 - Dino Game
 - Flappy Bird
 - Pong Game
+- [NEW] (In process) Brick Breaker
   - Will be added
     - Tic tac
 
